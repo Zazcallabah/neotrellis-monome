@@ -498,14 +498,6 @@
 <path id="Shape125"  d="M 117.903632389071 -51.1922144038014 C 119.001216088574 -51.1922144038014 119.89099152058 -52.082332188801 119.89099152058 -53.1799158883043 C 119.89099152058 -53.1799158883043 119.89099152058 -60.135844025082 119.89099152058 -60.135844025082 C 119.89099152058 -61.2334277245854 119.001216088574 -62.123545509585 117.903632389071 -62.123545509585 C 117.903632389071 -62.123545509585 110.947361899299 -62.123545509585 110.947361899299 -62.123545509585 C 109.849435846801 -62.123545509585 108.96000276779 -61.2334277245854 108.96000276779 -60.135844025082 C 108.96000276779 -60.135844025082 108.96000276779 -53.1799158883043 108.96000276779 -53.1799158883043 C 108.96000276779 -52.082332188801 109.849435846801 -51.1922144038014 110.947361899299 -51.1922144038014 C 110.947361899299 -51.1922144038014 117.903632389071 -51.1922144038014 117.903632389071 -51.1922144038014 C 117.903632389071 -51.1922144038014 117.903632389071 -51.1922144038014 117.903632389071 -51.1922144038014 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
 <title>b'Shape125'</title>
 </g>
-<g id="Shape131" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape131_nwe0000"  d="M 41.0381957714184 -260.515565077754 L 43.3735567215625 -259.166694280485 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape131'</title>
-</g>
-<g id="Shape129" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape129_nwe0000"  d="M 43.3735567215625 -264.560123351594 L 41.0381957714184 -263.211937260314 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape129'</title>
-</g>
 <g id="Shape124" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
 <path id="Shape124"  d="M 117.903632389071 -66.0982637726025 C 119.001216088574 -66.0982637726025 119.89099152058 -66.9883815576021 119.89099152058 -68.0859652571054 C 119.89099152058 -68.0859652571054 119.89099152058 -75.0418933938831 119.89099152058 -75.0418933938831 C 119.89099152058 -76.1394770933865 119.001216088574 -77.0295948783861 117.903632389071 -77.0295948783861 C 117.903632389071 -77.0295948783861 110.947361899299 -77.0295948783861 110.947361899299 -77.0295948783861 C 109.849435846801 -77.0295948783861 108.96000276779 -76.1394770933865 108.96000276779 -75.0418933938831 C 108.96000276779 -75.0418933938831 108.96000276779 -68.0859652571054 108.96000276779 -68.0859652571054 C 108.96000276779 -66.9883815576021 109.849435846801 -66.0982637726025 110.947361899299 -66.0982637726025 C 110.947361899299 -66.0982637726025 117.903632389071 -66.0982637726025 117.903632389071 -66.0982637726025 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
 <title>b'Shape124'</title>
@@ -518,155 +510,49 @@
 <path id="Shape123"  d="M 132.809681757872 -21.3801156661992 C 133.907265457375 -21.3801156661992 134.797040889381 -22.2695487452103 134.797040889381 -23.3678171507021 C 134.797040889381 -23.3678171507021 134.797040889381 -30.3237452874798 134.797040889381 -30.3237452874798 C 134.797040889381 -31.4213289869832 133.907265457375 -32.3114467719828 132.809681757872 -32.3114467719828 C 132.809681757872 -32.3114467719828 125.8534112681 -32.3114467719828 125.8534112681 -32.3114467719828 C 124.755485215602 -32.3114467719828 123.866052136591 -31.4213289869832 123.866052136591 -30.3237452874798 C 123.866052136591 -30.3237452874798 123.866052136591 -23.3678171507021 123.866052136591 -23.3678171507021 C 123.866052136591 -22.2695487452103 124.755485215602 -21.3801156661992 125.8534112681 -21.3801156661992 C 125.8534112681 -21.3801156661992 132.809681757872 -21.3801156661992 132.809681757872 -21.3801156661992 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
 <title>b'Shape123'</title>
 </g>
+
 <g id="Shape127" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
 <path id="Shape127"  d="M 117.903632389071 -21.3801156661992 C 119.001216088574 -21.3801156661992 119.89099152058 -22.2695487452103 119.89099152058 -23.3678171507021 C 119.89099152058 -23.3678171507021 119.89099152058 -30.3237452874798 119.89099152058 -30.3237452874798 C 119.89099152058 -31.4213289869832 119.001216088574 -32.3114467719828 117.903632389071 -32.3114467719828 C 117.903632389071 -32.3114467719828 110.947361899299 -32.3114467719828 110.947361899299 -32.3114467719828 C 109.849435846801 -32.3114467719828 108.96000276779 -31.4213289869832 108.96000276779 -30.3237452874798 C 108.96000276779 -30.3237452874798 108.96000276779 -23.3678171507021 108.96000276779 -23.3678171507021 C 108.96000276779 -22.2695487452103 109.849435846801 -21.3801156661992 110.947361899299 -21.3801156661992 C 110.947361899299 -21.3801156661992 117.903632389071 -21.3801156661992 117.903632389071 -21.3801156661992 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
 <title>b'Shape127'</title>
 </g>
 
-<!--merge 128 - 163 into six hexagonal holes -->
 <g id="Shape128" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape128_nwe0000"  d="M 45.7089176717067 -263.211937260314 L 43.3735567215625 -264.560123351594 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape128'</title>
-</g>
-<g id="Shape130" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape130_nwe0000"  d="M 41.0381957714184 -263.211937260314 L 41.0381957714184 -260.515565077754 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape130'</title>
-</g>
-<g id="Shape132" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape132_nwe0000"  d="M 43.3735567215625 -259.166694280485 L 45.7089176717067 -260.515565077754 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape132'</title>
-</g>
-<g id="Shape133" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape133_nwe0000"  d="M 45.7089176717067 -260.515565077754 L 45.7089176717067 -263.211937260314 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
+<path id="Shape128_nwe0000"  d="M 45.7089176717067 -263.211937260314 L 43.3735567215625 -264.560123351594  L 41.0381957714184 -263.211937260314 L 41.0381957714184 -260.515565077754  L 43.3735567215625 -259.166694280485 L 45.7089176717067 -260.515565077754  L 45.7089176717067 -263.211937260314 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
 <title>b'Shape133'</title>
 </g>
-<g id="Shape138" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape138_nwe0000"  d="M 43.3735567215625 -135.943067537568 L 45.7089176717067 -137.291253628848 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape138'</title>
-</g>
-<g id="Shape140" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape140_nwe0000"  d="M 45.7087464952096 -16.7638278919935 L 43.3733855450654 -18.1120139832737 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape140'</title>
-</g>
-<g id="Shape142" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape142_nwe0000"  d="M 41.0380245949213 -16.7638278919935 L 41.0380245949213 -14.0674557094332 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape142'</title>
-</g>
-<g id="Shape144" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape144_nwe0000"  d="M 43.3733855450654 -12.7185849121646 L 45.7087464952096 -14.0674557094332 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape144'</title>
-</g>
+
 <g id="Shape134" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape134_nwe0000"  d="M 45.7089176717067 -139.9881393409 L 43.3735567215625 -141.33632543218 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape134'</title>
-</g>
-<g id="Shape137" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape137_nwe0000"  d="M 41.0381957714184 -137.291253628848 L 43.3735567215625 -135.943067537568 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape137'</title>
-</g>
-<g id="Shape135" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape135_nwe0000"  d="M 43.3735567215625 -141.33632543218 L 41.0381957714184 -139.9881393409 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape135'</title>
-</g>
-<g id="Shape136" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape136_nwe0000"  d="M 41.0381957714184 -139.9881393409 L 41.0381957714184 -137.291253628848 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape136'</title>
-</g>
-<g id="Shape139" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape139_nwe0000"  d="M 45.7089176717067 -137.291253628848 L 45.7089176717067 -139.9881393409 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
+<path id="Shape134_nwe0000"  d="M 45.7089176717067 -139.9881393409 L 43.3735567215625 -141.33632543218  L 41.0381957714184 -139.9881393409  L 41.0381957714184 -137.291253628848  L 43.3735567215625 -135.943067537568  L 45.7089176717067 -137.291253628848  L 45.7089176717067 -139.9881393409 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
 <title>b'Shape139'</title>
 </g>
-<g id="Shape141" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape141_nwe0000"  d="M 43.3733855450654 -18.1120139832737 L 41.0380245949213 -16.7638278919935 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape141'</title>
-</g>
-<g id="Shape143" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape143_nwe0000"  d="M 41.0380245949213 -14.0674557094332 L 43.3733855450654 -12.7185849121646 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape143'</title>
-</g>
-<g id="Shape146" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape146_nwe0000"  d="M 172.907433854139 -16.7638278919935 L 170.571901727498 -18.1120139832737 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape146'</title>
-</g>
-<g id="Shape145" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape145_nwe0000"  d="M 45.7087464952096 -14.0674557094332 L 45.7087464952096 -16.7638278919935 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
+
+<g id="Shape140" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
+<path id="Shape140_nwe0000"  d="M 45.7087464952096 -16.7638278919935 L 43.3733855450654 -18.1120139832737  L 41.0380245949213 -16.7638278919935  L 41.0380245949213 -14.0674557094332  L 43.3733855450654 -12.7185849121646  L 45.7087464952096 -14.0674557094332  L 45.7087464952096 -16.7638278919935 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
 <title>b'Shape145'</title>
 </g>
-<g id="Shape147" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape147_nwe0000"  d="M 170.571901727498 -18.1120139832737 L 168.23671195385 -16.7638278919935 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape147'</title>
-</g>
-<g id="Shape148" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape148_nwe0000"  d="M 168.23671195385 -16.7638278919935 L 168.23671195385 -14.0674557094332 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape148'</title>
-</g>
-<g id="Shape155" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape155_nwe0000"  d="M 168.23671195385 -137.291253628848 L 170.571901727498 -135.942382831579 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape155'</title>
-</g>
-<g id="Shape157" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape157_nwe0000"  d="M 172.907433854139 -137.291253628848 L 172.907433854139 -139.987454634911 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape157'</title>
-</g>
-<g id="Shape150" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape150_nwe0000"  d="M 170.571901727498 -12.7185849121646 L 172.907433854139 -14.0674557094332 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape150'</title>
-</g>
-<g id="Shape152" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape152_nwe0000"  d="M 172.907433854139 -139.987454634911 L 170.571901727498 -141.335640726191 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape152'</title>
-</g>
-<g id="Shape151" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape151_nwe0000"  d="M 172.907433854139 -14.0674557094332 L 172.907433854139 -16.7638278919935 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
+
+<g id="Shape146" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
+<path id="Shape146_nwe0000"  d="M 172.907433854139 -16.7638278919935 L 170.571901727498 -18.1120139832737  L 168.23671195385 -16.7638278919935  L 168.23671195385 -14.0674557094332  L 170.571901727498 -12.7185849121646  L 172.907433854139 -14.0674557094332  L 172.907433854139 -16.7638278919935 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
 <title>b'Shape151'</title>
 </g>
-<g id="Shape153" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape153_nwe0000"  d="M 170.571901727498 -141.335640726191 L 168.23671195385 -139.987454634911 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape153'</title>
+
+<g id="Shape152" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
+<path id="Shape152_nwe0000"  d="M 172.907433854139 -139.987454634911 L 170.571901727498 -141.335640726191  L 168.23671195385 -139.987454634911  L 168.23671195385 -137.291253628848  L 170.571901727498 -135.942382831579  L 172.907433854139 -137.291253628848  L 172.907433854139 -139.987454634911 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
+<title>b'Shape157'</title>
 </g>
-<g id="Shape154" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape154_nwe0000"  d="M 168.23671195385 -139.987454634911 L 168.23671195385 -137.291253628848 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape154'</title>
-</g>
-<g id="Shape149" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape149_nwe0000"  d="M 168.23671195385 -14.0674557094332 L 170.571901727498 -12.7185849121646 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape149'</title>
-</g>
-<g id="Shape156" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape156_nwe0000"  d="M 170.571901727498 -135.942382831579 L 172.907433854139 -137.291253628848 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape156'</title>
-</g>
+
 <g id="Shape158" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape158_nwe0000"  d="M 172.907433854139 -263.211937260314 L 170.571901727498 -264.560123351594 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape158'</title>
-</g>
-<g id="Shape165" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape165"  d="M 92.9977944117877 -263.629607913276 C 92.9977944117877 -264.247212714868 92.4972743342225 -264.747732792433 91.8798407091276 -264.747732792433 C 91.2624070840327 -264.747732792433 90.7618870064675 -264.247212714868 90.7618870064675 -263.629607913276 C 90.7618870064675 -263.012003111683 91.2624070840327 -262.511483034118 91.8798407091276 -262.511483034118 C 92.4972743342225 -262.511483034118 92.9977944117877 -263.012003111683 92.9977944117877 -263.629607913276 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape165'</title>
-</g>
-<g id="Shape162" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape162_nwe0000"  d="M 170.571901727498 -259.166694280485 L 172.907433854139 -260.515565077754 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape162'</title>
-</g>
-<g id="Shape161" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape161_nwe0000"  d="M 168.23671195385 -260.515565077754 L 170.571901727498 -259.166694280485 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape161'</title>
-</g>
-<g id="Shape163" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape163_nwe0000"  d="M 172.907433854139 -260.515565077754 L 172.907433854139 -263.211937260314 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
+<path id="Shape158_nwe0000"  d="M 172.907433854139 -263.211937260314 L 170.571901727498 -264.560123351594 L 168.23671195385 -263.211937260314  L 168.23671195385 -260.515565077754  L 170.571901727498 -259.166694280485  L 172.907433854139 -260.515565077754  L 172.907433854139 -263.211937260314 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
 <title>b'Shape163'</title>
 </g>
+
 <g id="Shape164" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
 <path id="Shape164"  d="M 108.177041469985 -263.629607913276 C 108.177041469985 -264.247212714868 107.646736681922 -264.747732792433 107.029645409821 -264.747732792433 C 106.412040608229 -264.747732792433 105.911691707161 -264.247212714868 105.911691707161 -263.629607913276 C 105.911691707161 -263.012003111683 106.44165414223 -262.511483034118 107.059087767325 -262.511483034118 C 107.597780203747 -262.511483034118 108.177041469985 -263.012687817672 108.177041469985 -263.629607913276 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
 <title>b'Shape164'</title>
 </g>
-<g id="Shape160" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape160_nwe0000"  d="M 168.23671195385 -263.211937260314 L 168.23671195385 -260.515565077754 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape160'</title>
-</g>
-<g id="Shape159" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
-<path id="Shape159_nwe0000"  d="M 170.571901727498 -264.560123351594 L 168.23671195385 -263.211937260314 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
-<title>b'Shape159'</title>
+<g id="Shape165" transform="translate(-37.0551942879499,-7.73933618935837) scale(1,-1)">
+<path id="Shape165"  d="M 92.9977944117877 -263.629607913276 C 92.9977944117877 -264.247212714868 92.4972743342225 -264.747732792433 91.8798407091276 -264.747732792433 C 91.2624070840327 -264.747732792433 90.7618870064675 -264.247212714868 90.7618870064675 -263.629607913276 C 90.7618870064675 -263.012003111683 91.2624070840327 -262.511483034118 91.8798407091276 -262.511483034118 C 92.4972743342225 -262.511483034118 92.9977944117877 -263.012003111683 92.9977944117877 -263.629607913276 " stroke="#191919" stroke-width="0.35 px" style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:none;fill-opacity:1;fill-rule: evenodd"/>
+<title>b'Shape165'</title>
 </g>
 
 </svg>
