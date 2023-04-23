@@ -75,8 +75,8 @@ Adafruit_NeoTrellis trellis_array[NUM_ROWS / 4][NUM_COLS / 4] = {
 */
 // 16x8 RP2040
 Adafruit_NeoTrellis trellis_array[NUM_ROWS / 4][NUM_COLS / 4] = {
- { Adafruit_NeoTrellis(0x2e + 0, &Wire1), Adafruit_NeoTrellis(0x2e + 1, &Wire1), Adafruit_NeoTrellis(0x2e + 2, &Wire1), Adafruit_NeoTrellis(0x2e + 4, &Wire1)}, // top row
- { Adafruit_NeoTrellis(0x2e + 8, &Wire1), Adafruit_NeoTrellis(0x2e + 3, &Wire1), Adafruit_NeoTrellis(0x2e + 5, &Wire1), Adafruit_NeoTrellis(0x2e + 9, &Wire1) } // bottom row
+ { Adafruit_NeoTrellis(0x2e + 0), Adafruit_NeoTrellis(0x2e + 1), Adafruit_NeoTrellis(0x2e + 2), Adafruit_NeoTrellis(0x2e + 4)}, // top row
+ { Adafruit_NeoTrellis(0x2e + 8), Adafruit_NeoTrellis(0x2e + 3), Adafruit_NeoTrellis(0x2e + 5), Adafruit_NeoTrellis(0x2e + 9) } // bottom row
 };
 
 Adafruit_MultiTrellis trellis((Adafruit_NeoTrellis *)trellis_array, NUM_ROWS / 4, NUM_COLS / 4);
@@ -144,8 +144,8 @@ void setup(){
 
 	Serial.begin(115200);
 
-	Wire1.setSDA(I2C_SDA);
-	Wire1.setSCL(I2C_SCL);
+	Wire.setSDA(I2C_SDA);
+	Wire.setSCL(I2C_SCL);
 
 	mdp.isMonome = true;
 	mdp.deviceID = deviceID;
