@@ -1,16 +1,16 @@
 /***********************************************************
  *  DIY monome compatible grid w/ Adafruit NeoTrellis
  *  for RP2040 Pi Pico
- *  
+ *
  *  This code makes the Adafruit Neotrellis boards into a Monome compatible grid via monome's mext protocol
  *  ----> https://www.adafruit.com/product/3954
- *  
+ *
  *  Code here is for a 16x8 grid, but can be modified for 4x8, 8x8, or 16x16 (untested on larger grid arrays)
- *  
- *  Many thanks to: 
- *  scanner_darkly <https://github.com/scanner-darkly>, 
- *  TheKitty <https://github.com/TheKitty>, 
- *  Szymon Kaliski <https://github.com/szymonkaliski>, 
+ *
+ *  Many thanks to:
+ *  scanner_darkly <https://github.com/scanner-darkly>,
+ *  TheKitty <https://github.com/TheKitty>,
+ *  Szymon Kaliski <https://github.com/szymonkaliski>,
  *  John Park, Todbot, Juanma, Gerald Stevens, and others
  *
 */
@@ -35,7 +35,7 @@ const byte I2C_SCL = 27;
 #define INT_PIN 9
 #define LED_PIN 13 // teensy LED used to show boot info
 
-// This assumes you are using a USB breakout board to route power to the board 
+// This assumes you are using a USB breakout board to route power to the board
 // If you are plugging directly into the controller, you will need to adjust this brightness to a much lower value
 #define BRIGHTNESS 255 // overall grid brightness - use gamma table below to adjust levels
 
@@ -44,7 +44,7 @@ const byte I2C_SCL = 27;
 #define B 255
 
 // gamma table for 16 levels of brightness
-const uint8_t gammaTable[16] = { 0,  2,  3,  6,  11, 18, 25, 32, 41, 59, 70, 80, 92, 103, 115, 128}; 
+const uint8_t gammaTable[16] = { 0,  2,  3,  6,  11, 18, 25, 32, 41, 59, 70, 80, 92, 103, 115, 128};
 
 
 bool isInited = false;
@@ -62,7 +62,7 @@ char serialstr[32] = "m4216124";
 // Monome class setup
 MonomeSerialDevice mdp;
 
-int prevLedBuffer[mdp.MAXLEDCOUNT]; 
+int prevLedBuffer[mdp.MAXLEDCOUNT];
 
 
 // NeoTrellis setup
@@ -110,14 +110,14 @@ uint32_t Wheel(byte WheelPos) {
 }
 
 // ***************************************************************************
-// **                          FUNCTIONS FOR TRELLIS                        **   
+// **                          FUNCTIONS FOR TRELLIS                        **
 // ***************************************************************************
 
 
 //define a callback for key presses
 TrellisCallback keyCallback(keyEvent evt){
   uint8_t x  = evt.bit.NUM % NUM_COLS;
-  uint8_t y = evt.bit.NUM / NUM_COLS; 
+  uint8_t y = evt.bit.NUM / NUM_COLS;
 
   if(evt.bit.EDGE == SEESAW_KEYPAD_EDGE_RISING){
 //     Serial.println(" pressed ");
@@ -141,9 +141,9 @@ void setup(){
 	USBDevice.setManufacturerDescriptor(mfgstr);
 	USBDevice.setProductDescriptor(prodstr);
 	USBDevice.setSerialDescriptor(serialstr);
-  
+
 	Serial.begin(115200);
-  
+
 	Wire1.setSDA(I2C_SDA);
 	Wire1.setSCL(I2C_SCL);
 
@@ -186,7 +186,7 @@ void setup(){
 	// clear grid leds
 	mdp.setAllLEDs(0);
 	sendLeds();
-	
+
     // blink one led to show it's started up
     trellis.setPixelColor(0, 0xFFFFFF);
     trellis.show();
@@ -203,14 +203,14 @@ void sendLeds(){
   uint8_t value, prevValue = 0;
   uint32_t hexColor;
   bool isDirty = false;
-  
+
   for(int i=0; i< NUM_ROWS * NUM_COLS; i++){
     value = mdp.leds[i];
     prevValue = prevLedBuffer[i];
     uint8_t gvalue = gammaTable[value];
-    
+
     if (value != prevValue) {
-      //hexColor = (((R * value) >> 4) << 16) + (((G * value) >> 4) << 8) + ((B * value) >> 4); 
+      //hexColor = (((R * value) >> 4) << 16) + (((G * value) >> 4) << 8) + ((B * value) >> 4);
       hexColor =  (((gvalue*R)/256) << 16) + (((gvalue*G)/256) << 8) + (((gvalue*B)/256) << 0);
       trellis.setPixelColor(i, hexColor);
 
@@ -233,7 +233,7 @@ void sendLeds(){
 void loop() {
 
     mdp.poll(); // process incoming serial from Monomes
- 
+
     // refresh every 16ms or so
     if (isInited && monomeRefresh > 16) {
         trellis.read();
