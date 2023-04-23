@@ -15,8 +15,11 @@
  *
 */
 
-// SET TOOLS USB STACK TO TinyUSB
+/*
+	Edits made by Zaz, 2023-04-23.
+*/
 
+// SET TOOLS USB STACK TO TinyUSB
 #include "MonomeSerialDevice.h"
 #include <Adafruit_NeoTrellis.h>
 
@@ -46,7 +49,6 @@ const byte I2C_SCL = 21;
 // gamma table for 16 levels of brightness
 const uint8_t gammaTable[16] = { 0,  2,  3,  6,  11, 18, 25, 32, 41, 59, 70, 80, 92, 103, 115, 128};
 
-
 bool isInited = false;
 elapsedMillis monomeRefresh;
 
@@ -64,76 +66,49 @@ MonomeSerialDevice mdp;
 
 int prevLedBuffer[mdp.MAXLEDCOUNT];
 
-
 // NeoTrellis setup
-/*
-// 8x8 setup RP2040
 Adafruit_NeoTrellis trellis_array[NUM_ROWS / 4][NUM_COLS / 4] = {
-  { Adafruit_NeoTrellis(0x2F, &Wire1), Adafruit_NeoTrellis(0x2E, &Wire1) },
-  { Adafruit_NeoTrellis(0x32, &Wire1), Adafruit_NeoTrellis(0x30, &Wire1) }
-};
-*/
-// 16x8 RP2040
-Adafruit_NeoTrellis trellis_array[NUM_ROWS / 4][NUM_COLS / 4] = {
- { Adafruit_NeoTrellis(0x2e + 0), Adafruit_NeoTrellis(0x2e + 1), Adafruit_NeoTrellis(0x2e + 2), Adafruit_NeoTrellis(0x2e + 4)}, // top row
- { Adafruit_NeoTrellis(0x2e + 8), Adafruit_NeoTrellis(0x2e + 3), Adafruit_NeoTrellis(0x2e + 5), Adafruit_NeoTrellis(0x2e + 9) } // bottom row
+	{ Adafruit_NeoTrellis(0x2e + 0), Adafruit_NeoTrellis(0x2e + 1), Adafruit_NeoTrellis(0x2e + 2), Adafruit_NeoTrellis(0x2e + 4)}, // top row
+	{ Adafruit_NeoTrellis(0x2e + 8), Adafruit_NeoTrellis(0x2e + 3), Adafruit_NeoTrellis(0x2e + 5), Adafruit_NeoTrellis(0x2e + 9) } // bottom row
 };
 
 Adafruit_MultiTrellis trellis((Adafruit_NeoTrellis *)trellis_array, NUM_ROWS / 4, NUM_COLS / 4);
 
-
-// ***************************************************************************
-// **                                HELPERS                                **
-// ***************************************************************************
-
 // Pad a string of length 'len' with nulls
 void pad_with_nulls(char* s, int len) {
-  int l = strlen(s);
-  for( int i=l;i<len; i++) {
-    s[i] = '\0';
-  }
+	int l = strlen(s);
+	for( int i=l;i<len; i++) {
+		s[i] = '\0';
+	}
 }
 
 // Input a value 0 to 255 to get a color value.
 // The colors are a transition r - g - b - back to r.
 uint32_t Wheel(byte WheelPos) {
-  if(WheelPos < 85) {
-   return seesaw_NeoPixel::Color(WheelPos * 3, 255 - WheelPos * 3, 0);
-  } else if(WheelPos < 170) {
-   WheelPos -= 85;
-   return seesaw_NeoPixel::Color(255 - WheelPos * 3, 0, WheelPos * 3);
-  } else {
-   WheelPos -= 170;
-   return seesaw_NeoPixel::Color(0, WheelPos * 3, 255 - WheelPos * 3);
-  }
-  return 0;
+	if(WheelPos < 85) {
+		return seesaw_NeoPixel::Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+	} else if(WheelPos < 170) {
+		WheelPos -= 85;
+		return seesaw_NeoPixel::Color(255 - WheelPos * 3, 0, WheelPos * 3);
+	} else {
+		WheelPos -= 170;
+		return seesaw_NeoPixel::Color(0, WheelPos * 3, 255 - WheelPos * 3);
+	}
+	return 0;
 }
-
-// ***************************************************************************
-// **                          FUNCTIONS FOR TRELLIS                        **
-// ***************************************************************************
-
 
 //define a callback for key presses
 TrellisCallback keyCallback(keyEvent evt){
-  uint8_t x  = evt.bit.NUM % NUM_COLS;
-  uint8_t y = evt.bit.NUM / NUM_COLS;
+	uint8_t x  = evt.bit.NUM % NUM_COLS;
+	uint8_t y = evt.bit.NUM / NUM_COLS;
 
-  if(evt.bit.EDGE == SEESAW_KEYPAD_EDGE_RISING){
-//     Serial.println(" pressed ");
-    mdp.sendGridKey(x, y, 1);
-  }else if(evt.bit.EDGE == SEESAW_KEYPAD_EDGE_FALLING){
-//     Serial.println(" released ");
-    mdp.sendGridKey(x, y, 0);
-  }
-  //sendLeds();
-  //trellis.show();
-  return 0;
+	if(evt.bit.EDGE == SEESAW_KEYPAD_EDGE_RISING){
+		mdp.sendGridKey(x, y, 1);
+	}else if(evt.bit.EDGE == SEESAW_KEYPAD_EDGE_FALLING){
+		mdp.sendGridKey(x, y, 0);
+	}
+	return 0;
 }
-
-// ***************************************************************************
-// **                                 SETUP                                 **
-// ***************************************************************************
 
 void setup(){
 	uint8_t x, y;
@@ -150,8 +125,8 @@ void setup(){
 	mdp.isMonome = true;
 	mdp.deviceID = deviceID;
 	mdp.setupAsGrid(NUM_ROWS, NUM_COLS);
-  	monomeRefresh = 0;
-  	isInited = true;
+		monomeRefresh = 0;
+		isInited = true;
 
 	int var = 0;
 	while (var < 8) {
@@ -187,7 +162,7 @@ void setup(){
 	// set overall brightness for all pixels
 	for (x = 0; x < NUM_COLS / 4; x++) {
 		for (y = 0; y < NUM_ROWS / 4; y++) {
-		  trellis_array[y][x].pixels.setBrightness(BRIGHTNESS);
+			trellis_array[y][x].pixels.setBrightness(BRIGHTNESS);
 		}
 	}
 
@@ -195,58 +170,45 @@ void setup(){
 	mdp.setAllLEDs(0);
 	sendLeds();
 
-    // blink one led to show it's started up
-    trellis.setPixelColor(0, 0xFFFFFF);
-    trellis.show();
-    delay(100);
-    trellis.setPixelColor(0, 0x000000);
-    trellis.show();
+	// blink one led to show it's started up
+	trellis.setPixelColor(0, 0xFFFFFF);
+	trellis.show();
+	delay(100);
+	trellis.setPixelColor(0, 0x000000);
+	trellis.show();
 }
-
-// ***************************************************************************
-// **                                SEND LEDS                              **
-// ***************************************************************************
 
 void sendLeds(){
-  uint8_t value, prevValue = 0;
-  uint32_t hexColor;
-  bool isDirty = false;
+	uint8_t value, prevValue = 0;
+	uint32_t hexColor;
+	bool isDirty = false;
 
-  for(int i=0; i< NUM_ROWS * NUM_COLS; i++){
-    value = mdp.leds[i];
-    prevValue = prevLedBuffer[i];
-    uint8_t gvalue = gammaTable[value];
+	for(int i=0; i< NUM_ROWS * NUM_COLS; i++){
+		value = mdp.leds[i];
+		prevValue = prevLedBuffer[i];
+		uint8_t gvalue = gammaTable[value];
 
-    if (value != prevValue) {
-      //hexColor = (((R * value) >> 4) << 16) + (((G * value) >> 4) << 8) + ((B * value) >> 4);
-      hexColor =  (((gvalue*R)/256) << 16) + (((gvalue*G)/256) << 8) + (((gvalue*B)/256) << 0);
-      trellis.setPixelColor(i, hexColor);
+		if (value != prevValue) {
+			//hexColor = (((R * value) >> 4) << 16) + (((G * value) >> 4) << 8) + ((B * value) >> 4);
+			hexColor =  (((gvalue*R)/256) << 16) + (((gvalue*G)/256) << 8) + (((gvalue*B)/256) << 0);
+			trellis.setPixelColor(i, hexColor);
 
-      prevLedBuffer[i] = value;
-      isDirty = true;
-    }
-  }
-  if (isDirty) {
-    trellis.show();
-  }
-
+			prevLedBuffer[i] = value;
+			isDirty = true;
+		}
+	}
+	if (isDirty) {
+		trellis.show();
+	}
 }
 
-
-
-// ***************************************************************************
-// **                                 LOOP                                  **
-// ***************************************************************************
-
 void loop() {
+	mdp.poll(); // process incoming serial from Monomes
 
-    mdp.poll(); // process incoming serial from Monomes
-
-    // refresh every 16ms or so
-    if (isInited && monomeRefresh > 16) {
-        trellis.read();
-        sendLeds();
-        monomeRefresh = 0;
-    }
-
+	// refresh every 16ms or so
+	if (isInited && monomeRefresh > 16) {
+			trellis.read();
+			sendLeds();
+			monomeRefresh = 0;
+	}
 }
