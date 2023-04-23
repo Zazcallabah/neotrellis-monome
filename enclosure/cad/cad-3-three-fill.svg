@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="165.95819051106767mm" height="287.0517465549046mm" viewBox="0 0 165.95819051106767 287.0517465549046" xmlns="http://www.w3.org/2000/svg" version="1.1">
+
+
+<g id="BaseShape" transform="translate(-37.922796,-18.47) scale(1,-1)">
+<path id="BaseShape_0" stroke="black" stroke-width="0.35 px"
+d="
+	M 39.274949815538186 -22.37951253255208 L 39.274949815538186 -276.37934027777777
+	A 2.5 2.5 0 0 1 41.815018717447906 -278.91975368923625 L173.89463975694443 -278.91975368923625
+	A 2.5 2.5 0 0 1 176.43436414930554 -276.37934027777777 L 176.43436414930554 -22.37951253255208
+	A 2.5 2.5 0 0 1 173.89463975694443 -19.83978814019097 L 41.815018717447906 -19.83978814019097
+	A 2.5 2.5 0 0 1 39.274949815538186 -22.37951253255208 Z"
+style="stroke-width:0.35;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:square;fill:silver;fill-opacity:1;"/>
+<title>b'BaseShape'</title>
+</g>
+
+
+
+</svg>
