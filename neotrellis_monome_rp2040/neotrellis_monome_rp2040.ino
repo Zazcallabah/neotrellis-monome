@@ -68,8 +68,8 @@ int prevLedBuffer[mdp.MAXLEDCOUNT];
 
 // NeoTrellis setup
 Adafruit_NeoTrellis trellis_array[NUM_ROWS / 4][NUM_COLS / 4] = {
-	{ Adafruit_NeoTrellis(0x2e + 0), Adafruit_NeoTrellis(0x2e + 1), Adafruit_NeoTrellis(0x2e + 2), Adafruit_NeoTrellis(0x2e + 4)}, // top row
-	{ Adafruit_NeoTrellis(0x2e + 8), Adafruit_NeoTrellis(0x2e + 3), Adafruit_NeoTrellis(0x2e + 5), Adafruit_NeoTrellis(0x2e + 9) } // bottom row
+	{ Adafruit_NeoTrellis(0x2e + 4), Adafruit_NeoTrellis(0x2e + 2), Adafruit_NeoTrellis(0x2e + 1), Adafruit_NeoTrellis(0x2e + 0) }, // top row
+	{ Adafruit_NeoTrellis(0x2e + 9), Adafruit_NeoTrellis(0x2e + 5), Adafruit_NeoTrellis(0x2e + 3), Adafruit_NeoTrellis(0x2e + 8) } // bottom row
 };
 
 Adafruit_MultiTrellis trellis((Adafruit_NeoTrellis *)trellis_array, NUM_ROWS / 4, NUM_COLS / 4);
@@ -170,11 +170,21 @@ void setup(){
 	mdp.setAllLEDs(0);
 	sendLeds();
 
-	// blink one led to show it's started up
-	trellis.setPixelColor(0, 0xFFFFFF);
-	trellis.show();
-	delay(100);
-	trellis.setPixelColor(0, 0x000000);
+	// animate board on start
+	for (x = 0; x < NUM_COLS; x++) {
+		for (y = 0; y < NUM_ROWS; y++) {
+			uint32_t r = ((0xFF / NUM_COLS) * x) << 16;
+			uint32_t g = ((0xFF / NUM_ROWS) * y) << 8;
+			trellis.setPixelColor((y*NUM_COLS+x),  r | g);
+			trellis.show();
+			delay(1);
+		}
+	}
+	for (x = 0; x < NUM_COLS; x++) {
+		for (y = 0; y < NUM_ROWS; y++) {
+			trellis.setPixelColor((y*NUM_COLS+x), 0x000000);
+		}
+	}
 	trellis.show();
 }
 
