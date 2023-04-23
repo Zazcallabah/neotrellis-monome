@@ -164,7 +164,15 @@ void setup(){
 		Serial.println("trellis.begin() failed!");
 		Serial.println("check your addresses.");
 		Serial.println("reset to try again.");
-		while(1);  // loop forever
+		pinMode(LED_PIN, OUTPUT);
+		gpio_set_dir(LED_PIN, GPIO_OUT);
+		while(1)
+		{
+			digitalWrite(LED_PIN, HIGH);
+			delay(50);
+			digitalWrite(LED_PIN, LOW);
+			delay(450);
+		}
 	}
 
 	// key callback
