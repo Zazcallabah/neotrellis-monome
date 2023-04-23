@@ -29,15 +29,15 @@
 #define NUM_LEDS NUM_ROWS*NUM_COLS
 
 // I2C pin defs for RP2040
-const byte I2C_SDA = 26;
-const byte I2C_SCL = 27;
+const byte I2C_SDA = 20;
+const byte I2C_SCL = 21;
 
 #define INT_PIN 9
-#define LED_PIN 13 // teensy LED used to show boot info
+#define LED_PIN 25 // teensy LED used to show boot info
 
 // This assumes you are using a USB breakout board to route power to the board
 // If you are plugging directly into the controller, you will need to adjust this brightness to a much lower value
-#define BRIGHTNESS 255 // overall grid brightness - use gamma table below to adjust levels
+#define BRIGHTNESS 32 // overall grid brightness - use gamma table below to adjust levels
 
 #define R 255
 #define G 255
@@ -75,8 +75,8 @@ Adafruit_NeoTrellis trellis_array[NUM_ROWS / 4][NUM_COLS / 4] = {
 */
 // 16x8 RP2040
 Adafruit_NeoTrellis trellis_array[NUM_ROWS / 4][NUM_COLS / 4] = {
-  { Adafruit_NeoTrellis(0x32, &Wire1), Adafruit_NeoTrellis(0x30, &Wire1), Adafruit_NeoTrellis(0x2F, &Wire1), Adafruit_NeoTrellis(0x2E, &Wire1)}, // top row
-  { Adafruit_NeoTrellis(0x33, &Wire1), Adafruit_NeoTrellis(0x31, &Wire1), Adafruit_NeoTrellis(0x3E, &Wire1), Adafruit_NeoTrellis(0x36, &Wire1) } // bottom row
+ { Adafruit_NeoTrellis(0x2e + 0, &Wire1), Adafruit_NeoTrellis(0x2e + 1, &Wire1), Adafruit_NeoTrellis(0x2e + 2, &Wire1), Adafruit_NeoTrellis(0x2e + 4, &Wire1)}, // top row
+ { Adafruit_NeoTrellis(0x2e + 8, &Wire1), Adafruit_NeoTrellis(0x2e + 3, &Wire1), Adafruit_NeoTrellis(0x2e + 5, &Wire1), Adafruit_NeoTrellis(0x2e + 9, &Wire1) } // bottom row
 };
 
 Adafruit_MultiTrellis trellis((Adafruit_NeoTrellis *)trellis_array, NUM_ROWS / 4, NUM_COLS / 4);
