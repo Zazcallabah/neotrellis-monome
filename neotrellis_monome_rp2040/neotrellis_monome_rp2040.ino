@@ -17,7 +17,12 @@
 
 /*
 	Edits made by Zaz, 2023-04-23.
+	set addr const to 16 for second grid
 */
+#define DEVICE_SERIAL_NUMBER "m332960073452"
+#define DEVICE_ADDR_CONST 0
+// #define DEVICE_SERIAL_NUMBER "m52500681"
+// #define DEVICE_ADDR_CONST 16
 
 // SET TOOLS USB STACK TO TinyUSB
 #include "MonomeSerialDevice.h"
@@ -54,12 +59,12 @@ elapsedMillis monomeRefresh;
 
 // set your monome device name here
 String deviceID = "neo-monome";
-String serialNum = "m4216124";
+String serialNum = DEVICE_SERIAL_NUMBER;
 
 // DEVICE INFO FOR TinyUSB
 char mfgstr[32] = "monome";
 char prodstr[32] = "monome";
-char serialstr[32] = "m4216124";
+char serialstr[32] = DEVICE_SERIAL_NUMBER;
 
 // Monome class setup
 MonomeSerialDevice mdp;
@@ -68,8 +73,8 @@ int prevLedBuffer[mdp.MAXLEDCOUNT];
 
 // NeoTrellis setup
 Adafruit_NeoTrellis trellis_array[NUM_ROWS / 4][NUM_COLS / 4] = {
-	{ Adafruit_NeoTrellis(0x2e + 4), Adafruit_NeoTrellis(0x2e + 2), Adafruit_NeoTrellis(0x2e + 1), Adafruit_NeoTrellis(0x2e + 0) }, // top row
-	{ Adafruit_NeoTrellis(0x2e + 9), Adafruit_NeoTrellis(0x2e + 5), Adafruit_NeoTrellis(0x2e + 3), Adafruit_NeoTrellis(0x2e + 8) } // bottom row
+	{ Adafruit_NeoTrellis(0x2e + 4 + DEVICE_ADDR_CONST), Adafruit_NeoTrellis(0x2e + 2 + DEVICE_ADDR_CONST), Adafruit_NeoTrellis(0x2e + 1 + DEVICE_ADDR_CONST), Adafruit_NeoTrellis(0x2e + 0 + DEVICE_ADDR_CONST) }, // top row
+	{ Adafruit_NeoTrellis(0x2e + 9 + DEVICE_ADDR_CONST), Adafruit_NeoTrellis(0x2e + 5 + DEVICE_ADDR_CONST), Adafruit_NeoTrellis(0x2e + 3 + DEVICE_ADDR_CONST), Adafruit_NeoTrellis(0x2e + 8 + DEVICE_ADDR_CONST) } // bottom row
 };
 
 Adafruit_MultiTrellis trellis((Adafruit_NeoTrellis *)trellis_array, NUM_ROWS / 4, NUM_COLS / 4);
@@ -175,7 +180,8 @@ void setup(){
 		for (y = 0; y < NUM_ROWS; y++) {
 			uint32_t r = ((0xFF / NUM_COLS) * x) << 16;
 			uint32_t g = ((0xFF / NUM_ROWS) * y) << 8;
-			trellis.setPixelColor((y*NUM_COLS+x),  r | g);
+			uint32_t b = DEVICE_ADDR_CONST ? 0 : 0x99;
+			trellis.setPixelColor((y*NUM_COLS+x),  r | g | b);
 			trellis.show();
 			delay(1);
 		}
