@@ -31,6 +31,7 @@
 #include <Arduino.h>
 #include <Adafruit_TinyUSB.h>
 #include <elapsedMillis.h>
+#include "palette.h"
 
 #define NUM_ROWS 8 // DIM_Y number of rows of keys down
 #define NUM_COLS 16 // DIM_X number of columns of keys across
@@ -48,8 +49,10 @@ const byte I2C_SCL = 21;
 #define BRIGHTNESS 32 // overall grid brightness - use gamma table below to adjust levels
 
 // gamma table for 16 levels of brightness
-const uint8_t gammaTable[16] = { 0,  2,  3,  6,  11, 18, 25, 32, 41, 59, 70, 80, 92, 103, 115, 128};
+uint8_t gammaTable[16] = { 0,  0,  0,  0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
+uint8_t selected_palette = 0;
+bool globalDirty = false;
 bool isInited = false;
 elapsedMillis monomeRefresh;
 
@@ -136,6 +139,8 @@ void setup(){
 	}
 
 	setBrightnessForAllPixels();
+	setGammaTable(2);
+
 	// clear grid leds
 	mdp.setAllLEDs(0);
 	sendLeds();
@@ -161,23 +166,23 @@ void setup(){
 
 void sendLeds(){
 	uint8_t value, prevValue = 0;
-	uint32_t hexColor;
 	bool isDirty = false;
-
 	for(int i=0; i< NUM_ROWS * NUM_COLS; i++){
 		value = mdp.leds[i];
 		prevValue = prevLedBuffer[i];
-		uint8_t gvalue = gammaTable[value];
-
 		if (value != prevValue) {
-			hexColor =  (((gvalue*R)/256) << 16) + (((gvalue*G)/256) << 8) + (((gvalue*B)/256) << 0);
-			trellis.setPixelColor(i, hexColor);
+			uint8_t gvalue = gammaTable[value];
+
+			uint8_t r = allpalettes[selected_palette][0][value]*gValue/255;
+			uint8_t g = allpalettes[selected_palette][1][value]*gValue/255;
+			uint8_t b = allpalettes[selected_palette][2][value]*gValue/255;
+			trellis.setPixelColor(i, (r << 16) + (g << 8) + (b << 0));
 
 			prevLedBuffer[i] = value;
 			isDirty = true;
 		}
 	}
-	if (isDirty) {
+	if (isDirty || globalDirty) {
 		trellis.show();
 	}
 }
@@ -190,13 +195,21 @@ void setBrightnessForAllPixels() {
 	}
 }
 
+// value {0,7}
+void setGammaTable(float value){
+	float k = ((8.0-value)/8.0)*(255.0) / 15.0
+	for (int x = 0; x < 16; x++) {
+		gammaTable[x] =  k*x;
+	}
+}
+
 void loop() {
 	mdp.poll(); // process incoming serial from Monomes
 
 	// refresh every 16ms or so
 	if (isInited && monomeRefresh > 16) {
-			trellis.read();
-			sendLeds();
-			monomeRefresh = 0;
+		trellis.read();
+		sendLeds();
+		monomeRefresh = 0;
 	}
 }
