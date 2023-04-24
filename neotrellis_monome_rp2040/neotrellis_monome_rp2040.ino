@@ -47,10 +47,6 @@ const byte I2C_SCL = 21;
 // If you are plugging directly into the controller, you will need to adjust this brightness to a much lower value
 #define BRIGHTNESS 32 // overall grid brightness - use gamma table below to adjust levels
 
-#define R 255
-#define G 255
-#define B 255
-
 // gamma table for 16 levels of brightness
 const uint8_t gammaTable[16] = { 0,  2,  3,  6,  11, 18, 25, 32, 41, 59, 70, 80, 92, 103, 115, 128};
 
@@ -79,29 +75,6 @@ Adafruit_NeoTrellis trellis_array[NUM_ROWS / 4][NUM_COLS / 4] = {
 
 Adafruit_MultiTrellis trellis((Adafruit_NeoTrellis *)trellis_array, NUM_ROWS / 4, NUM_COLS / 4);
 
-// Pad a string of length 'len' with nulls
-void pad_with_nulls(char* s, int len) {
-	int l = strlen(s);
-	for( int i=l;i<len; i++) {
-		s[i] = '\0';
-	}
-}
-
-// Input a value 0 to 255 to get a color value.
-// The colors are a transition r - g - b - back to r.
-uint32_t Wheel(byte WheelPos) {
-	if(WheelPos < 85) {
-		return seesaw_NeoPixel::Color(WheelPos * 3, 255 - WheelPos * 3, 0);
-	} else if(WheelPos < 170) {
-		WheelPos -= 85;
-		return seesaw_NeoPixel::Color(255 - WheelPos * 3, 0, WheelPos * 3);
-	} else {
-		WheelPos -= 170;
-		return seesaw_NeoPixel::Color(0, WheelPos * 3, 255 - WheelPos * 3);
-	}
-	return 0;
-}
-
 //define a callback for key presses
 TrellisCallback keyCallback(keyEvent evt){
 	uint8_t x  = evt.bit.NUM % NUM_COLS;
@@ -116,8 +89,6 @@ TrellisCallback keyCallback(keyEvent evt){
 }
 
 void setup(){
-	uint8_t x, y;
-
 	USBDevice.setManufacturerDescriptor(mfgstr);
 	USBDevice.setProductDescriptor(prodstr);
 	USBDevice.setSerialDescriptor(serialstr);
@@ -156,21 +127,15 @@ void setup(){
 	}
 
 	// key callback
-	for (x = 0; x < NUM_COLS; x++) {
-		for (y = 0; y < NUM_ROWS; y++) {
+	for (uint8_t x = 0; x < NUM_COLS; x++) {
+		for (uint8_t y = 0; y < NUM_ROWS; y++) {
 			trellis.activateKey(x, y, SEESAW_KEYPAD_EDGE_RISING, true);
 			trellis.activateKey(x, y, SEESAW_KEYPAD_EDGE_FALLING, true);
 			trellis.registerCallback(x, y, keyCallback);
 		}
 	}
 
-	// set overall brightness for all pixels
-	for (x = 0; x < NUM_COLS / 4; x++) {
-		for (y = 0; y < NUM_ROWS / 4; y++) {
-			trellis_array[y][x].pixels.setBrightness(BRIGHTNESS);
-		}
-	}
-
+	setBrightnessForAllPixels();
 	// clear grid leds
 	mdp.setAllLEDs(0);
 	sendLeds();
@@ -205,7 +170,6 @@ void sendLeds(){
 		uint8_t gvalue = gammaTable[value];
 
 		if (value != prevValue) {
-			//hexColor = (((R * value) >> 4) << 16) + (((G * value) >> 4) << 8) + ((B * value) >> 4);
 			hexColor =  (((gvalue*R)/256) << 16) + (((gvalue*G)/256) << 8) + (((gvalue*B)/256) << 0);
 			trellis.setPixelColor(i, hexColor);
 
@@ -215,6 +179,14 @@ void sendLeds(){
 	}
 	if (isDirty) {
 		trellis.show();
+	}
+}
+
+void setBrightnessForAllPixels() {
+	for (uint8_t x = 0; x < NUM_COLS / 4; x++) {
+		for (uint8_t y = 0; y < NUM_ROWS / 4; y++) {
+			trellis_array[y][x].pixels.setBrightness(BRIGHTNESS);
+		}
 	}
 }
 
