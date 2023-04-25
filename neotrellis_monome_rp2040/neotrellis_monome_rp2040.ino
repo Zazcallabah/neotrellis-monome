@@ -52,6 +52,7 @@ void blinkLed(uint32_t on, uint32_t off){
 	digitalWrite(LED_PIN, LOW);
 	delay(off);
 }
+
 // This assumes you are using a USB breakout board to route power to the board
 // If you are plugging directly into the controller, you will need to adjust this brightness to a much lower value
 #define BRIGHTNESS 32 // overall grid brightness - use gamma table below to adjust levels
@@ -113,11 +114,17 @@ TrellisCallback keyCallback(keyEvent evt){
 	uint8_t y = evt.bit.NUM / NUM_COLS;
 
 	if(evt.bit.EDGE == SEESAW_KEYPAD_EDGE_RISING){
-		mdp.sendGridKey(x, y, 1);
+		keyDown(x,y);
 	}else if(evt.bit.EDGE == SEESAW_KEYPAD_EDGE_FALLING){
-		mdp.sendGridKey(x, y, 0);
+		keyUp(x,y);
 	}
 	return 0;
+}
+void keyDown(uint8_t x, uint8_t y){
+	mdp.sendGridKey(x, y, 1);
+}
+void keyUp(uint8_t x, uint8_t y){
+	mdp.sendGridKey(x, y, 0);
 }
 
 void setup(){
@@ -135,8 +142,8 @@ void setup(){
 	mdp.isMonome = true;
 	mdp.deviceID = deviceID;
 	mdp.setupAsGrid(NUM_ROWS, NUM_COLS);
-		monomeRefresh = 0;
-		isInited = true;
+	monomeRefresh = 0;
+	isInited = true;
 
 	int var = 0;
 	while (var < 8) {
