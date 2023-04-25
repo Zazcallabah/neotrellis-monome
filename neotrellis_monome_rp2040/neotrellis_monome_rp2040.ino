@@ -19,10 +19,10 @@
 	Edits made by Zaz, 2023-04-23.
 	set addr const to 16 for second grid
 */
-#define DEVICE_SERIAL_NUMBER "m332960073452"
-#define DEVICE_ADDR_CONST 0
-// #define DEVICE_SERIAL_NUMBER "m52500681"
-// #define DEVICE_ADDR_CONST 16
+//#define DEVICE_SERIAL_NUMBER "m332960073452"
+//#define DEVICE_ADDR_CONST 0
+#define DEVICE_SERIAL_NUMBER "m52500681"
+#define DEVICE_ADDR_CONST 16
 
 // SET TOOLS USB STACK TO TinyUSB
 #include "MonomeSerialDevice.h"
@@ -146,8 +146,8 @@ void setup(){
 	sendLeds();
 
 	// animate board on start
-	for (x = 0; x < NUM_COLS; x++) {
-		for (y = 0; y < NUM_ROWS; y++) {
+	for (uint8_t x = 0; x < NUM_COLS; x++) {
+		for (uint8_t y = 0; y < NUM_ROWS; y++) {
 			uint32_t r = ((0xFF / NUM_COLS) * x) << 16;
 			uint32_t g = ((0xFF / NUM_ROWS) * y) << 8;
 			uint32_t b = DEVICE_ADDR_CONST ? 0 : 0x99;
@@ -156,8 +156,8 @@ void setup(){
 			delay(1);
 		}
 	}
-	for (x = 0; x < NUM_COLS; x++) {
-		for (y = 0; y < NUM_ROWS; y++) {
+	for (uint8_t x = 0; x < NUM_COLS; x++) {
+		for (uint8_t y = 0; y < NUM_ROWS; y++) {
 			trellis.setPixelColor((y*NUM_COLS+x), 0x000000);
 		}
 	}
@@ -167,11 +167,11 @@ void setup(){
 void sendLeds(){
 	uint8_t value, prevValue = 0;
 	bool isDirty = false;
-	for(int i=0; i< NUM_ROWS * NUM_COLS; i++){
+	for(uint8_t i=0; i< NUM_ROWS * NUM_COLS; i++){
 		value = mdp.leds[i];
 		prevValue = prevLedBuffer[i];
 		if (value != prevValue) {
-			uint8_t gvalue = gammaTable[value];
+			uint8_t gValue = gammaTable[value];
 
 			uint8_t r = allpalettes[selected_palette][0][value]*gValue/255;
 			uint8_t g = allpalettes[selected_palette][1][value]*gValue/255;
@@ -197,8 +197,8 @@ void setBrightnessForAllPixels() {
 
 // value {0,7}
 void setGammaTable(float value){
-	float k = ((8.0-value)/8.0)*(255.0) / 15.0
-	for (int x = 0; x < 16; x++) {
+	float k = ((8.0-value)/8.0)*(255.0) / 15.0;
+	for (uint8_t x = 0; x < 16; x++) {
 		gammaTable[x] =  k*x;
 	}
 }
