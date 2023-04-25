@@ -24,6 +24,9 @@
 #define DEVICE_SERIAL_NUMBER "m52500681"
 #define DEVICE_ADDR_CONST 16
 
+// set to 1 to run neotrellis validation script
+#define VALIDATE_AT_START 0
+
 // SET TOOLS USB STACK TO TinyUSB
 #include "MonomeSerialDevice.h"
 #include <Adafruit_NeoTrellis.h>
@@ -43,7 +46,12 @@ const byte I2C_SCL = 21;
 
 #define INT_PIN 9
 #define LED_PIN 25 // teensy LED used to show boot info
-
+void blinkLed(uint32_t on, uint32_t off){
+	digitalWrite(LED_PIN, HIGH);
+	delay(on);
+	digitalWrite(LED_PIN, LOW);
+	delay(off);
+}
 // This assumes you are using a USB breakout board to route power to the board
 // If you are plugging directly into the controller, you will need to adjust this brightness to a much lower value
 #define BRIGHTNESS 32 // overall grid brightness - use gamma table below to adjust levels
@@ -76,6 +84,27 @@ Adafruit_NeoTrellis trellis_array[NUM_ROWS / 4][NUM_COLS / 4] = {
 	{ Adafruit_NeoTrellis(0x2e + 9 + DEVICE_ADDR_CONST), Adafruit_NeoTrellis(0x2e + 5 + DEVICE_ADDR_CONST), Adafruit_NeoTrellis(0x2e + 3 + DEVICE_ADDR_CONST), Adafruit_NeoTrellis(0x2e + 8 + DEVICE_ADDR_CONST) } // bottom row
 };
 
+void validateAtStart(){
+	uint8_t start = 0x2e;
+	for (uint8_t x = 0; x < 32 ; x++) {
+		uint8_t addr = start+x;
+		Adafruit_NeoTrellis t_test(addr);
+		if (t_test.begin(addr))
+		{
+			t_test.pixels.setPixelColor(1,0xFFFFFF);
+			t_test.pixels.show();
+
+		} else {
+			blinkLed(100,200);
+			blinkLed(100,200);
+			blinkLed(100,300);
+		}
+	}
+	while(1){
+		blinkLed(400,200);
+	}
+}
+
 Adafruit_MultiTrellis trellis((Adafruit_NeoTrellis *)trellis_array, NUM_ROWS / 4, NUM_COLS / 4);
 
 //define a callback for key presses
@@ -95,6 +124,8 @@ void setup(){
 	USBDevice.setManufacturerDescriptor(mfgstr);
 	USBDevice.setProductDescriptor(prodstr);
 	USBDevice.setSerialDescriptor(serialstr);
+	pinMode(LED_PIN, OUTPUT);
+	gpio_set_dir(LED_PIN, GPIO_OUT);
 
 	Serial.begin(115200);
 
@@ -113,19 +144,17 @@ void setup(){
 		var++;
 		delay(100);
 	}
+	if(VALIDATE_AT_START){
+		validateAtStart();
+	}
 
 	if (!trellis.begin()) {
 		Serial.println("trellis.begin() failed!");
 		Serial.println("check your addresses.");
 		Serial.println("reset to try again.");
-		pinMode(LED_PIN, OUTPUT);
-		gpio_set_dir(LED_PIN, GPIO_OUT);
 		while(1)
 		{
-			digitalWrite(LED_PIN, HIGH);
-			delay(50);
-			digitalWrite(LED_PIN, LOW);
-			delay(450);
+			blinkLed(50,450);
 		}
 	}
 
