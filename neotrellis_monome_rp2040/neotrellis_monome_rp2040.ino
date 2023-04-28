@@ -57,6 +57,10 @@ void blinkLed(uint32_t on, uint32_t off){
 // If you are plugging directly into the controller, you will need to adjust this brightness to a much lower value
 #define BRIGHTNESS 32 // overall grid brightness - use gamma table below to adjust levels
 
+#define NORMAL_MODE 0
+#define PICKER_MODE 2
+uint8_t current_mode = NORMAL_MODE;
+
 // gamma table for 16 levels of brightness
 uint8_t gammaTable[16] = { 0,  0,  0,  0,  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -108,6 +112,59 @@ void validateAtStart(){
 
 Adafruit_MultiTrellis trellis((Adafruit_NeoTrellis *)trellis_array, NUM_ROWS / 4, NUM_COLS / 4);
 
+uint8_t chordcount = 0;
+
+bool detectChordPress(uint8_t x, uint8_t y) {
+	if ((x==13 && y==7) || (x==14 && y==7) || (x==15 && y==7)) {
+		chordcount += 1;
+		if(chordcount == 3){
+			chordcount = 0;
+			return 1;
+		}
+	} else {
+		chordcount = 0;
+	}
+	return 0;
+}
+void blankLeds(){
+	for (uint8_t x = 0; x < NUM_COLS; x++) {
+		for (uint8_t y = 0; y < NUM_ROWS; y++) {
+			trellis.setPixelColor((y*NUM_COLS+x), 0x000000);
+		}
+	}
+	trellis.show();
+}
+uint8_t pickerstep = 0;
+uint8_t pickershift = 0;
+void drawPickerMode(){
+	trellis.setPixelColor(0,0,0x900000);
+//	float fuzz = (int8_t)pickerstep-8;
+	float f = 1.0*255.0/NUM_ROWS;
+	for (uint8_t y = 1; y < NUM_ROWS; y++) {
+		uint8_t c = y*f;
+		trellis.setPixelColor(0, y, (c << 16) + (c << 8) + (c << 0));
+	}
+
+
+	for (uint8_t x = 1; x < NUM_COLS; x++) {
+		for (uint8_t y = 0; y < NUM_ROWS; y++) {
+			uint8_t palettedemo = (x+pickershift) % 25;
+			uint8_t palettestep = (pickerstep+y)%16;
+			uint8_t gValue = gammaTable[palettestep];
+			uint8_t r = allpalettes[palettedemo][0][palettestep]*gValue/255;
+			uint8_t g = allpalettes[palettedemo][1][palettestep]*gValue/255;
+			uint8_t b = allpalettes[palettedemo][2][palettestep]*gValue/255;
+			trellis.setPixelColor(x, y, (r << 16) + (g << 8) + (b << 0));
+		}
+	}
+	trellis.show();
+	pickerstep = pickerstep + 1;
+	if(pickerstep == 16){
+		pickerstep = 0;
+		pickershift += 1;
+	}
+}
+
 //define a callback for key presses
 TrellisCallback keyCallback(keyEvent evt){
 	uint8_t x  = evt.bit.NUM % NUM_COLS;
@@ -121,10 +178,30 @@ TrellisCallback keyCallback(keyEvent evt){
 	return 0;
 }
 void keyDown(uint8_t x, uint8_t y){
-	mdp.sendGridKey(x, y, 1);
+	if(current_mode == NORMAL_MODE){
+		if(detectChordPress(x,y)){
+			current_mode = PICKER_MODE;
+		}else{
+			mdp.sendGridKey(x, y, 1);
+		}
+	} else if( current_mode == PICKER_MODE){
+		current_mode = NORMAL_MODE;
+		blankLeds();
+		if(x==0&&y==0){
+			return;
+		}
+		if(x==0){
+			setGammaTable(y);
+			return;
+		}
+		selected_palette = x-(pickershift % 25);
+	}
 }
 void keyUp(uint8_t x, uint8_t y){
-	mdp.sendGridKey(x, y, 0);
+	chordcount = 0;
+	if(current_mode == NORMAL_MODE){
+		mdp.sendGridKey(x, y, 0);
+	}
 }
 
 void setup(){
@@ -192,12 +269,7 @@ void setup(){
 			delay(1);
 		}
 	}
-	for (uint8_t x = 0; x < NUM_COLS; x++) {
-		for (uint8_t y = 0; y < NUM_ROWS; y++) {
-			trellis.setPixelColor((y*NUM_COLS+x), 0x000000);
-		}
-	}
-	trellis.show();
+	blankLeds();
 }
 
 void sendLeds(){
@@ -245,7 +317,11 @@ void loop() {
 	// refresh every 16ms or so
 	if (isInited && monomeRefresh > 16) {
 		trellis.read();
-		sendLeds();
+		if(current_mode == NORMAL_MODE){
+			sendLeds();
+		} else if( current_mode == PICKER_MODE){
+			drawPickerMode();
+		}
 		monomeRefresh = 0;
 	}
 }
