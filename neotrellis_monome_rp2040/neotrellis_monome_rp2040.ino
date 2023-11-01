@@ -19,10 +19,10 @@
 	Edits made by Zaz, 2023-04-23.
 	set addr const to 16 for second grid
 */
-//#define DEVICE_SERIAL_NUMBER "m332960073452"
+//#define DEVICE_SERIAL_NUMBER "m332960073452" // under construction
 //#define DEVICE_ADDR_CONST 0
-#define DEVICE_SERIAL_NUMBER "m52500681"
-#define DEVICE_ADDR_CONST 16
+ #define DEVICE_SERIAL_NUMBER "m52500681" // in case
+ #define DEVICE_ADDR_CONST 16
 
 // set to 1 to run neotrellis validation script
 #define VALIDATE_AT_START 0
@@ -89,25 +89,43 @@ Adafruit_NeoTrellis trellis_array[NUM_ROWS / 4][NUM_COLS / 4] = {
 	{ Adafruit_NeoTrellis(0x2e + 9 + DEVICE_ADDR_CONST), Adafruit_NeoTrellis(0x2e + 5 + DEVICE_ADDR_CONST), Adafruit_NeoTrellis(0x2e + 3 + DEVICE_ADDR_CONST), Adafruit_NeoTrellis(0x2e + 8 + DEVICE_ADDR_CONST) } // bottom row
 };
 
-void validateAtStart(){
-	uint8_t start = 0x2e;
-	for (uint8_t x = 0; x < 32 ; x++) {
-		uint8_t addr = start+x;
-		Adafruit_NeoTrellis t_test(addr);
-		if (t_test.begin(addr))
-		{
-			t_test.pixels.setPixelColor(1,0xFFFFFF);
-			t_test.pixels.show();
+uint32_t colorForN(uint16_t led_n,uint16_t val){
+	if(led_n > 15){
+		return 0x808000;
+	}
+	if(led_n == 15){
+		return val > 0x7fff ? 0x800000 : 0x404040;
+	}
 
-		} else {
-			blinkLed(100,200);
-			blinkLed(100,200);
-			blinkLed(100,300);
+	uint8_t islit = (val >> led_n) & 0x1;
+
+	if(islit){
+		uint8_t r = allpalettes[8][0][val]*32/255;
+		uint8_t g = allpalettes[8][1][val]*32/255;
+		uint8_t b = allpalettes[8][2][val]*32/255;
+		return (r << 16) + (g << 8) + (b << 0);
+	} else {
+		return 0x000000;
+	}
+}
+
+bool validateAtStart(){
+	bool isValid = true;
+	for (uint8_t x = 0; x < NUM_COLS / 4; x++) {
+		for (uint8_t y = 0; y < NUM_ROWS / 4; y++) {
+			Adafruit_NeoTrellis t_test = trellis_array[y][x];
+			if (t_test.begin())
+			{
+				for(uint8_t ledn=0;ledn<16;ledn++){
+					t_test.pixels.setPixelColor(ledn,colorForN(ledn, x));
+				}
+				t_test.pixels.show();
+			} else {
+				isValid=false;
+			}
 		}
 	}
-	while(1){
-		blinkLed(400,200);
-	}
+	return isValid;
 }
 
 Adafruit_MultiTrellis trellis((Adafruit_NeoTrellis *)trellis_array, NUM_ROWS / 4, NUM_COLS / 4);
@@ -138,7 +156,7 @@ uint8_t pickerstep = 0;
 uint8_t pickershift = 0;
 void drawPickerMode(){
 	trellis.setPixelColor(0,0,0x900000);
-//	float fuzz = (int8_t)pickerstep-8;
+
 	float f = 1.0*255.0/NUM_ROWS;
 	for (uint8_t y = 1; y < NUM_ROWS; y++) {
 		uint8_t c = y*f;
@@ -157,11 +175,15 @@ void drawPickerMode(){
 			trellis.setPixelColor(x, y, (r << 16) + (g << 8) + (b << 0));
 		}
 	}
+
+	// page buttons
+	trellis.setPixelColor(NUM_COLS-1, NUM_ROWS-1, 0);
+	trellis.setPixelColor(NUM_COLS-2, NUM_ROWS-1, 0);
+
 	trellis.show();
 	pickerstep = pickerstep + 1;
 	if(pickerstep == 16){
 		pickerstep = 0;
-		pickershift += 1;
 	}
 }
 
@@ -181,20 +203,43 @@ void keyDown(uint8_t x, uint8_t y){
 	if(current_mode == NORMAL_MODE){
 		if(detectChordPress(x,y)){
 			current_mode = PICKER_MODE;
+			pickershift = 0;
 		}else{
 			mdp.sendGridKey(x, y, 1);
 		}
 	} else if( current_mode == PICKER_MODE){
+		if(x==NUM_COLS-1 && y==NUM_ROWS-1){
+			if(pickershift==24) {
+				pickershift = 0;
+			}else{
+				pickershift += 1;
+			}
+			return;
+		}
+		if(x==NUM_COLS-2 && y==NUM_ROWS-1){
+			if(pickershift==0) {
+				pickershift = 24;
+			}else{
+				pickershift -= 1;
+			}
+			return;
+		}
 		current_mode = NORMAL_MODE;
 		blankLeds();
 		if(x==0&&y==0){
 			return;
 		}
 		if(x==0){
+			Serial.println("Selected gamma:");
+			Serial.println(y);
 			setGammaTable(y);
+			animateBoard(true);
 			return;
 		}
-		selected_palette = x-(pickershift % 25);
+		selected_palette = (x+pickershift) % 25;
+		Serial.println("Selected palette:");
+		Serial.println(selected_palette);
+		animateBoard(true);
 	}
 }
 void keyUp(uint8_t x, uint8_t y){
@@ -229,7 +274,12 @@ void setup(){
 		delay(100);
 	}
 	if(VALIDATE_AT_START){
-		validateAtStart();
+		if(!validateAtStart()){
+			while(1)
+			{
+				blinkLed(200,450);
+			}
+		}
 	}
 
 	if (!trellis.begin()) {
@@ -252,22 +302,52 @@ void setup(){
 	}
 
 	setBrightnessForAllPixels();
-	setGammaTable(2);
+	float initGamma = 1.0;
+	setGammaTable(initGamma);
 
 	// clear grid leds
 	mdp.setAllLEDs(0);
 	sendLeds();
 
 	// animate board on start
+	animateBoard(false);
+
+	Serial.println("Init gamma:");
+	Serial.println(initGamma);
+	Serial.println("Init palette:");
+	Serial.println(selected_palette);
+}
+
+uint32_t getColor(bool palette, uint8_t x, uint8_t y){
+	uint32_t r = 0;
+	uint32_t g = 0;
+	uint32_t b = 0;
+
+	if(palette) {
+		uint8_t value = (x+y)%16;
+		uint8_t gValue = gammaTable[value];
+		r = allpalettes[selected_palette][0][value]*gValue/255;
+		g = allpalettes[selected_palette][1][value]*gValue/255;
+		b = allpalettes[selected_palette][2][value]*gValue/255;
+	} else {
+		r = ((0xFF / NUM_COLS) * x) ;
+		g = ((0xFF / NUM_ROWS) * y) ;
+		b = DEVICE_ADDR_CONST ? 0 : 0x99;
+	}
+	return (r<<16) | (g<<8) | b;
+}
+
+void animateBoard(bool palette){
 	for (uint8_t x = 0; x < NUM_COLS; x++) {
 		for (uint8_t y = 0; y < NUM_ROWS; y++) {
-			uint32_t r = ((0xFF / NUM_COLS) * x) << 16;
-			uint32_t g = ((0xFF / NUM_ROWS) * y) << 8;
-			uint32_t b = DEVICE_ADDR_CONST ? 0 : 0x99;
-			trellis.setPixelColor((y*NUM_COLS+x),  r | g | b);
+			uint32_t color = getColor(palette,x,y);
+			trellis.setPixelColor((y*NUM_COLS+x),  color);
 			trellis.show();
 			delay(1);
 		}
+	}
+	if(palette){
+		delay(1000);
 	}
 	blankLeds();
 }
